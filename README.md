@@ -3,12 +3,13 @@ The objectives of this project work are:
 Implementation of DNA Cryptography with One-Time Pad to make encryption-decryption more secured.
 Implementation of Modified Vigenere cipher (Beaufort Cipher) to change the DNA cipher to other format to create confusion.
 
-##Tutorial
+## Tutorial
 > By: Bimochan Shrestha
 
 - [x] Accept Collaborator request?
 _specially for_ @bipin21 @shraddha43 and @sus47 :+1:
-step 1
+
+### step 1
 Netbeans maa gayera project ko name DnaCryptography raakhne
 close it
 
@@ -21,7 +22,7 @@ $ cd Documents/NetbeansProjects/DnaCryptography/src
 $ git init
 ```
 
-step 2
+### step 2
 ```shell
 $ cd
 ```
@@ -56,7 +57,7 @@ aba yo copy paste
 $ ssh-add ~/.ssh/id_rsa
 ```
 
-step 3
+### step 3
 aba github maa install garne hamro keys
 ```shell
 $ cat ~/.ssh/id_rsa.pub
@@ -79,7 +80,7 @@ $ cat ~/.ssh/id_rsa.pub
 
  It's done
 
- Step 4
+### Step 4
  ```shell
  $ cd Documents/NetBeansProject/DnaCryptography/src
  ```
@@ -122,7 +123,7 @@ upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)
 upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)
 aba forks synced huncha
 
-step 5
+### step 5
 aba kei src folder vitra file add garyu vane k garne?
 ```shell
 $ git add .
@@ -132,7 +133,7 @@ $ git push origin master
 aba browser maa dnacryptography ko link maa jaane ani pull request garne
 yo garyo vane ani koi member le accept garyo vane main maa merge huncha
 
-step 6
+### step 6
 aru le kei add garyo and timilai upto date garna paryo.
 ```shell
 $ git pull upstream master
