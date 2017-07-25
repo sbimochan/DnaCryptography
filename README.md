@@ -5,7 +5,6 @@ Implementation of Modified Vigenere cipher (Beaufort Cipher) to change the DNA c
 
 ## Tutorial
 > By: Bimochan Shrestha
-
 - [x] Accept Collaborator request?
 _specially for_ @bipin21 @shraddha43 and @sus47 :+1:
 
@@ -139,3 +138,6 @@ aru le kei add garyo and timilai upto date garna paryo.
 $ git pull upstream master
 ```
 yo pull garnu agadi aafu le gareko chij add ra commit ni garnu parcha
+
+
+
