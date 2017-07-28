@@ -1,3 +1,5 @@
+package dna.crypto;
+
 
 import java.util.Scanner;
 
@@ -13,14 +15,148 @@ import java.util.Scanner;
  */
 public class Initial_Page extends javax.swing.JFrame {
 //    public variable initialization
-static String[] cipheredtext;
+//static String[] cipheredtext;
+static String texts; //variable to take input from user plaintext
+static char[] ptextarray;
+static String cipheredtext; 
+static String userplaintext;
+static String plainbin="";
+static int plainreplcedlength;
+ static String xortext;
+        static String keybin="";
+        static char[] keybinarray;
+        static String key;
+         static String dna;
+        static  String dnaop="",helix="";
+         static String result;
     /**
      * Creates new form Initial_Page
      */
     public Initial_Page() {
         initComponents();
     }
+ public  String plaintexts(){
+     userplaintext=plaintext.getText();
+        return userplaintext;
+    }
+ public  static String replacetext(String texts){
+   ptextarray=texts.toCharArray(); //convert to plaintext
+       int l=ptextarray.length; // length of characters
+       int k; //random integer variable
+       //expected output
+     
+       for(int i=0;i<l;i++){
 
+          k=(int) ptextarray[i]; 
+          if(k>=97 && k <=122){
+           k=k-26;
+           if(k<97){
+               int m=97-k;
+               k=96+m;
+           }
+           ptextarray[i]=(char) k;
+//          System.out.println(pt[i]);
+        }
+          else if(k>=65 && k <=90){
+           k=k-26;
+           if(k<65){
+               int m=65-k;
+               k=64+m;
+           }
+           ptextarray[i]=(char) k;
+//          System.out.println(pt[i]);
+        }
+          else if(k==32){
+              k=32;
+              ptextarray[i]=(char) k;
+          }
+//          System.out.println(pt[i]);
+       }  
+       return new String(ptextarray);
+     
+ }
+ public static String getPlainBinary(){
+      char[] pb;
+       
+       pb=cipheredtext.toCharArray();
+       for(int i=0;i<pb.length;i++){
+//            System.out.println(pb[i]);
+            int tt=(int) pb[i];
+          
+         if(tt==32){
+            plainbin=plainbin+("00"+Integer.toBinaryString((int) pb[i]));  
+         }
+         else{
+             plainbin=plainbin+(0+Integer.toBinaryString(tt));
+         }
+       }
+       return plainbin;
+ }
+ public static String getKeyBin(){
+      
+        keybinarray=key.toCharArray();
+        for(int i=0;i<keybinarray.length;i++){
+            int tk=(int) keybinarray[i];
+            if(tk==32){
+             keybin=keybin+("00"+ Integer.toBinaryString(tk));   
+            }
+            else{
+                keybin=keybin+(0+ Integer.toBinaryString(tk));
+            }
+            
+        }
+        return keybin;
+ }
+ public static String getCipherText(){
+         int ln=result.length();//legnth of replacedtext array
+     int ln1=ln/2;
+//     for(int j=0;j<ln;j++){
+//         String bb=0+Integer.toBinaryString((int) rt[j]);//binary value 0 is added to make 8 bit 
+         int kk=0,kl=2;
+        
+         for(int ll=0;ll<ln1;ll++){
+         dna=result.substring(kk,kl);//dividing into 2/2 bit binary value
+         kk=kk+2;
+         kl=kl+2;
+        
+         switch(dna){
+             case "00":
+                  helix=helix+"A";
+//                 System.out.println("A");
+                 break;
+               case "01":
+                   helix=helix+"T";
+//                 System.out.println("T");
+                 break;
+                   case "10":
+                       helix=helix+"C";
+//                 System.out.println("C");
+                 break;
+                       case "11":
+                           helix=helix+"G";
+//                 System.out.println("G");
+                 break;
+                       default:
+                           continue;
+         
+         }
+         
+         
+         
+//         }
+      
+     
+     //ascii end
+        
+     }
+//         System.out.println(helix);
+        
+        dnaop=Helix.dnahelix(helix);
+       String reverse=new StringBuffer(dnaop).reverse().toString();
+     
+//         System.out.println(reverse);  
+         return reverse;
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -160,90 +296,70 @@ static String[] cipheredtext;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+   
     private void EncryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncryptActionPerformed
         // TODO add your handling code here:
          try {
               
 //             start of try catch method 
 //         Scanner sn=new Scanner(System.in);
-       String texts; //variable to take input from user plaintext
-       char[] pt; // char array
+        // char array
        
        
 //       System.out.println("enter plaintext");
 //       sp=sn.nextLine();
 //       texts=plaintext.getText(); //input taken from textfield
-       texts=plaintext.getText();
-       pt=texts.toCharArray(); //convert to plaintext
-       int l=pt.length; // length of characters
-       int k; //random integer variable
-       String cipheredtext; //expected output
-     
-       for(int i=0;i<l;i++){
-
-          k=(int) pt[i]; 
-          if(k>=97 && k <=122){
-           k=k-26;
-           if(k<97){
-               int m=97-k;
-               k=96+m;
-           }
-           pt[i]=(char) k;
-//          System.out.println(pt[i]);
-        }
-          else if(k>=65 && k <=90){
-           k=k-26;
-           if(k<65){
-               int m=65-k;
-               k=64+m;
-           }
-           pt[i]=(char) k;
-//          System.out.println(pt[i]);
-        }
-          else if(k==32){
-              k=32;
-              pt[i]=(char) k;
-          }
-//          System.out.println(pt[i]);
-       }
-       cipheredtext=new String(pt);
+//       texts=plaintext.getText();
+       texts=plaintexts();
+       
+//       pt=texts.toCharArray(); //convert to plaintext
+//       int l=pt.length; // length of characters
+//       int k; //random integer variable
+//       String cipheredtext; //expected output
+//     
+//       for(int i=0;i<l;i++){
+//
+//          k=(int) pt[i]; 
+//          if(k>=97 && k <=122){
+//           k=k-26;
+//           if(k<97){
+//               int m=97-k;
+//               k=96+m;
+//           }
+//           pt[i]=(char) k;
+////          System.out.println(pt[i]);
+//        }
+//          else if(k>=65 && k <=90){
+//           k=k-26;
+//           if(k<65){
+//               int m=65-k;
+//               k=64+m;
+//           }
+//           pt[i]=(char) k;
+////          System.out.println(pt[i]);
+//        }
+//          else if(k==32){
+//              k=32;
+//              pt[i]=(char) k;
+//          }
+////          System.out.println(pt[i]);
+//       }
+//       cipheredtext=new String(pt);
+       cipheredtext=replacetext(texts);
+       plainreplcedlength=cipheredtext.length();
 //       System.out.println(cipheredtext);
        //print ascii value of char
        
 //       ciphertext.setText(cipheredtext);
        //plaintext binary
-       char[] pb;
-       String plainbin="";
-       pb=cipheredtext.toCharArray();
-       for(int i=0;i<pb.length;i++){
-//            System.out.println(pb[i]);
-            int tt=(int) pb[i];
-          
-         if(tt==32){
-            plainbin=plainbin+("00"+Integer.toBinaryString((int) pb[i]));  
-         }
-         else{
-             plainbin=plainbin+(0+Integer.toBinaryString(tt));
-         }
-       }
-       System.out.println(plainbin);
+      
+       plainbin=getPlainBinary();
+//       System.out.println(plainbin);
        //key binary
-       String key=keys.getText();
-       String xortext;
-        String keybin="";
-        char[] kb;
-        kb=key.toCharArray();
-        for(int i=0;i<kb.length;i++){
-            int tk=(int) kb[i];
-            if(tk==32){
-             keybin=keybin+("00"+ Integer.toBinaryString(tk));   
-            }
-            else{
-                keybin=keybin+(0+ Integer.toBinaryString(tk));
-            }
-            
-        }
+//       String key=keys.getText();
+       key=Otp.getOTP();
+       keys.setText(key);
+     keybin=getKeyBin();
 //       System.out.println(keybin);
        //xor key and plaintext
        StringBuilder sb = new StringBuilder();
@@ -253,53 +369,14 @@ for(int i = 0; i < keybin.length(); i++){
 
 
 }
-String result = sb.toString();
+result = sb.toString();
 //System.out.println(result); 
    //xor result printed
 //       xortext="bipin";
 //       
 //     char[] rt;//replaced text array
 //     rt=xortext.toCharArray();
-     int ln=result.length();//legnth of replacedtext array
-     int ln1=ln/2;
-//     for(int j=0;j<ln;j++){
-//         String bb=0+Integer.toBinaryString((int) rt[j]);//binary value 0 is added to make 8 bit 
-         int kk=0,kl=2;
-         String dna;
-         String dnaop="";
-         for(int ll=0;ll<ln1;ll++){
-         dna=result.substring(kk,kl);//dividing into 2/2 bit binary value
-         kk=kk+2;
-         kl=kl+2;
-        
-         switch(dna){
-             case "00":
-                  dnaop=dnaop+"A";
-//                 System.out.println("A");
-                 break;
-               case "01":
-                   dnaop=dnaop+"T";
-//                 System.out.println("T");
-                 break;
-                   case "10":
-                       dnaop=dnaop+"C";
-//                 System.out.println("C");
-                 break;
-                       case "11":
-                           dnaop=dnaop+"G";
-//                 System.out.println("G");
-                 break;
-                       default:
-                           continue;
-         
-         }
-         
-//         }
-//       System.out.println(bb);  
-     
-     //ascii end
-        
-     }
+ dnaop=getCipherText();
 //         System.out.println(dnaop);
          ciphertext.setText(dnaop);
          }
@@ -344,17 +421,7 @@ String result = sb.toString();
         }
         //</editor-fold>
 
-        /* Create and display the form */
-//    String lseq = "0011111111101111111111111100101101111100110000001011111000010100";
-//String tseq = "0011111111100000110011001100110011001100110011001100110011001100";
-//
-//StringBuilder sb = new StringBuilder();
-//
-//for(int i = 0; i < lseq.length(); i++)
-//    sb.append((lseq.charAt(i) ^ tseq.charAt(i)));
-//
-//String result = sb.toString();
-//System.out.println(result);
+       
       
         
         java.awt.EventQueue.invokeLater(new Runnable() {
