@@ -1,3 +1,9 @@
+package dna.crypto;
+
+
+import static dna.crypto.Helix.dnaop;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -163,8 +169,24 @@ public class Decrypt extends javax.swing.JFrame {
     private void decryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decryptActionPerformed
         // TODO add your handling code here:
         try {
-            String ct=ciphertext.getText(); //get siphertext
+            String ctext="";
+            String ct="";
+            String cipher="";
+            String dna="";
+            String helix="";
+            ctext=ciphertext.getText(); //get ciphertext
+//            
+            
+            cipher=new StringBuffer(ctext).reverse().toString();
+//            System.out.println(cipher);
+            
+            ct=Helixreverse.dnahelix(cipher);
+//             helix=cipher;
+          
+//            System.out.println(ct);
+//            String ct=ciphertext.getText();
             int ln=ct.length(); //length of ciphertext
+//            System.out.println(ln);
 //            int ln1=ln/2; // divide length to take dna index 00 -> A 01 ->T
             int k=0,l=1; //
             String bin,dnaval="";
@@ -195,6 +217,7 @@ public class Decrypt extends javax.swing.JFrame {
                         
                 }
             }
+//            System.out.println(dnaval);
         String ky=keys.getText();//key provided by user to encrypt and decrypt must be same   
         String keybin="";  
         char[] kb; //charArray
@@ -218,7 +241,7 @@ public class Decrypt extends javax.swing.JFrame {
     // xor key and ciphertext in binary format
 }
 //String result = sb.toString();
-//System.out.println(result); //result after xor               
+//System.out.println("result "+result); //result after xor               
 //                plaintext.setText(dnaval);
                 //binary value output
                 //to produce char
